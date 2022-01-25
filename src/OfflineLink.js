@@ -1,7 +1,7 @@
-import { ApolloLink, Observable } from "apollo-link";
 import debounce from "lodash/debounce";
 import uuidv4 from "uuid/v4";
-import gql from "graphql-tag";
+
+import {gql,ApolloLink,Observable} from "@apollo/client"
 
 const syncStatusQuery = gql`
   query syncStatus {
