@@ -1,10 +1,10 @@
 declare module 'apollo-link-offline' {
-  import type { gql, ApolloLink, Operation, NextLink } from '@apollo/client'
+  import type { gql, ApolloLink, Operation, NextLink ,ApolloClient,NormalizedCacheObject} from '@apollo/client'
 
   type Options = Partial<{
     storage: {
       getItem:(key:string)=>Promise<string|null|undefined>,
-      setItem:(key:string,value:string)=>Promise<void>,
+      setItem:(key:string,value:string,client:ApolloClient<NormalizedCacheObject>)=>Promise<void>,
       removeItem:(key:string)=>Promise<void>
     };
     retryInterval: number;

@@ -97,11 +97,11 @@ export default class OfflineLink extends ApolloLink {
 
           // Saving new version files
           map.forEach((value, key) => {
-            this.storage.setItem(this.prefix + key, JSON.stringify(value));
+            this.storage.setItem(this.prefix + key, JSON.stringify(value),this.client);
           });
 
           // Saving new mutation Ids
-          this.storage.setItem(this.prefix + "AttemptIds", [...map.keys()].join());
+          this.storage.setItem(this.prefix + "AttemptIds", [...map.keys()].join(),this.client);
 
           // remove old version file
           this.storage.removeItem("@offlineLink");
@@ -158,11 +158,11 @@ export default class OfflineLink extends ApolloLink {
    */
   saveQueue(attemptId, item) {
     if (attemptId && item) {
-      this.storage.setItem(this.prefix + attemptId, JSON.stringify(item));
+      this.storage.setItem(this.prefix + attemptId, JSON.stringify(item),this.client);
     }
 
     // Saving Ids file
-    this.storage.setItem(this.prefix + "AttemptIds", [...this.queue.keys()].join());
+    this.storage.setItem(this.prefix + "AttemptIds", [...this.queue.keys()].join(),this.client);
 
     this.updateStatus(false);
   }
